@@ -7,3 +7,6 @@ license = "MIT"
 
 [dependencies]
 bevy = "0.5"
+
+[dev-dependencies]
+bevy_fly_camera = "0.7.0"

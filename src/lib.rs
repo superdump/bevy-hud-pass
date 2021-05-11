@@ -15,6 +15,8 @@ use bevy::{
     ui,
 };
 
+pub mod world_axes;
+
 pub mod camera {
     /// The name of the camera used in the HUD pass
     pub const CAMERA_HUD: &str = "camera_hud";

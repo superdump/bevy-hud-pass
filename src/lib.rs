@@ -16,6 +16,7 @@ use bevy::{
 };
 
 pub mod camera {
+    /// The name of the camera used in the HUD pass
     pub const CAMERA_HUD: &str = "camera_hud";
 }
 
@@ -27,9 +28,12 @@ pub mod node {
 
 pub const HUD_SETUP_SYSTEM: &str = "hud_setup";
 
+/// Add a HUDPass component to an entity to have it render in the HUD pass
 #[derive(Debug, Clone, Default, RenderResources)]
 pub struct HUDPass;
 
+/// Just a PerspectiveCameraBundle with `Default` providing the correct name for the
+/// HUD pass
 #[derive(Bundle, Debug)]
 pub struct HUDCameraBundle {
     pub camera: Camera,
@@ -58,6 +62,8 @@ impl Default for HUDCameraBundle {
     }
 }
 
+/// Just a PbrBundle but with a HUDPass component instead of a MainPass component
+/// so that the mesh is rendered by the HUD pass
 #[derive(Bundle)]
 pub struct HUDPbrBundle {
     pub mesh: Handle<Mesh>,

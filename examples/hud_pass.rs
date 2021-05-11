@@ -68,7 +68,32 @@ fn setup(
             "HUD pass\n('h' to toggle)",
             TextStyle {
                 font: font_handle.clone(),
-                font_size: 100.0,
+                font_size: 32.0,
+                color: Color::WHITE,
+            },
+            TextAlignment {
+                horizontal: HorizontalAlign::Center,
+                ..Default::default()
+            },
+        ),
+        ..Default::default()
+    });
+    commands.spawn_bundle(TextBundle {
+        style: Style {
+            align_self: AlignSelf::FlexEnd,
+            position_type: PositionType::Absolute,
+            position: Rect {
+                left: Val::Px(390.0),
+                top: Val::Px(32.0),
+                ..Default::default()
+            },
+            ..Default::default()
+        },
+        text: Text::with_section(
+            "This is the same cube viewed from cameras\nin two separate render passes.",
+            TextStyle {
+                font: font_handle.clone(),
+                font_size: 32.0,
                 color: Color::WHITE,
             },
             TextAlignment {
@@ -93,7 +118,7 @@ fn setup(
             "Main pass\n('m' to toggle)",
             TextStyle {
                 font: font_handle.clone(),
-                font_size: 100.0,
+                font_size: 32.0,
                 color: Color::WHITE,
             },
             TextAlignment {

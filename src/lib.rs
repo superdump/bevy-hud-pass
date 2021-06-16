@@ -3,8 +3,7 @@ use bevy::{
     render::{
         camera::{ActiveCameras, Camera, PerspectiveProjection, VisibleEntities},
         pass::{
-            LoadOp, Operations, PassDescriptor, RenderPassDepthStencilAttachmentDescriptor,
-            TextureAttachment,
+            LoadOp, Operations, PassDescriptor, RenderPassDepthStencilAttachment, TextureAttachment,
         },
         render_graph::{
             base, CameraNode, PassNode, RenderGraph, RenderResourcesNode, WindowSwapChainNode,
@@ -117,7 +116,7 @@ fn hud_setup(
     msaa: Res<Msaa>,
 ) {
     let mut hud_pass_node = PassNode::<&HUDPass>::new(PassDescriptor {
-        color_attachments: vec![msaa.color_attachment_descriptor(
+        color_attachments: vec![msaa.color_attachment(
             TextureAttachment::Input("color_attachment".to_string()),
             TextureAttachment::Input("color_resolve_target".to_string()),
             Operations {
@@ -125,7 +124,7 @@ fn hud_setup(
                 store: true,
             },
         )],
-        depth_stencil_attachment: Some(RenderPassDepthStencilAttachmentDescriptor {
+        depth_stencil_attachment: Some(RenderPassDepthStencilAttachment {
             attachment: TextureAttachment::Input("depth".to_string()),
             depth_ops: Some(Operations {
                 // NOTE: Clearing here makes everything in this pass be drawn on top of things in the main pass
